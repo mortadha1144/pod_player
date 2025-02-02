@@ -138,8 +138,13 @@ class VideoApis {
           ),
         );
       } else {
-        final manifest =
-            await yt.videos.streamsClient.getManifest(youtubeIdOrUrl);
+        final manifest = await yt.videos.streamsClient.getManifest(
+          youtubeIdOrUrl,
+          ytClients: [
+            YoutubeApiClient.android,
+            YoutubeApiClient.ios,
+          ],
+        );
         urls.addAll(
           manifest.muxed.map(
             (element) => VideoQalityUrls(
